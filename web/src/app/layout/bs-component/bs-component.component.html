@@ -1,0 +1,49 @@
+
+<div class="d-flex align-items-center mb-3">
+  <button class="add-post-button mr-2" routerLink="/components/add-post">
+    <i class="fas fa-plus"></i> Ajouter Post
+  </button>
+
+  <div class="input-group">
+    <select   class="form-control" [(ngModel)]="selectedSortOption" (ngModelChange)="sortPosts($event)">
+      <option value="newest">{{ 'Newest Posts' | translate }}</option>
+      <option value="oldest">{{ 'Oldest Posts' | translate }}</option>
+      <option value="most-likes">{{ 'Most Likes' | translate }}</option>
+       <option value="most-comments">{{ 'Most Comments' | translate }}</option>
+    </select>
+    <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-sort"></i></span>
+    </div>
+  </div>
+  
+</div>
+<div *ngFor="let post of posts">
+  <h2>{{ post.title }}</h2>
+  <hr>
+  <p>{{ post.description }}</p>
+  <p class="date">{{ post.datePub | date: 'dd/MM/yyyy HH:mm' }}</p>
+  <div class="likes">
+    <button class="like-button" (click)="likePost(post)">
+      <i class="fa fa-thumbs-up"></i> Like
+    </button>
+    <span class="likes-count" [ngStyle]="{ color: 'blue' }">
+      {{ post.likes }}
+    </span>
+  </div>
+  <button class="comment-button" (click)="toggleComments(post)">
+    <i class="fa fa-comments"></i> Comments
+  </button>
+  <div *ngIf="post.showComments">
+    <ul>
+      <li *ngFor="let comment of post.comments">
+        {{ comment.content }}
+        {{comment.user.nom}}
+        <span class="date">{{ comment.dateComment| date: 'dd/MM/yyyy HH:mm' }}</span>
+      </li>
+    </ul>
+    <div class="comment-form">
+      <input type="text" [(ngModel)]="post.newComment" placeholder="Add a comment" class="comment-input">
+      <button (click)="addComment(post)" class="comment-button">Add Comment</button>
+    </div>
+  </div>
+</div>

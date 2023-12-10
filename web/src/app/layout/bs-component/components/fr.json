@@ -1,0 +1,11 @@
+{
+    "ADD.TITLE": "Title",
+    "ADD.DESCRIPTION": "Description",
+    "ADD.IMAGE": "Image",
+    "ERROR.MAXLENGTH": "The entered value is too long",
+    "ERROR.MINLENGTH": "The entered value is too short",
+    "ERROR.REQUIRED": "This field is required",
+    "CANCEL": "Cancel",
+    "ADD.SUBMIT": "Add Post"
+  }
+  
